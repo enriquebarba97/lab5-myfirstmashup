@@ -13,7 +13,7 @@ public class SpotifyTest {
 	@Test
 	public void getAlbumsTest() throws UnsupportedEncodingException {
 		String artist = "Julio Iglesias";
-		SpotifyResource spotify = SpotifyResource.getInstance();
+		SpotifyResource spotify = new SpotifyResource();
 		AlbumSearch spotifyResults = spotify.getAlbums(artist);
 		
 		assertNotNull("The search returned null", spotifyResults);

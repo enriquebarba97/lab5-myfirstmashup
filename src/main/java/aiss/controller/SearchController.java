@@ -40,7 +40,7 @@ public class SearchController extends HttpServlet {
 		
 		// Search for albums in Spotify
 		log.log(Level.FINE, "Searching for Spotify albums of " + query);
-		SpotifyResource spotify = SpotifyResource.getInstance();
+		SpotifyResource spotify = new SpotifyResource();
 		AlbumSearch spotifyResults = spotify.getAlbums(query);
 		
 		if (spotifyResults!=null){

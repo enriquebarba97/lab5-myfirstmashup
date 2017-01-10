@@ -11,15 +11,8 @@ import aiss.model.spotify.AlbumSearch;
 
 public class SpotifyResource {
 
-	private static SpotifyResource instance=null;
+
 	private static final Logger log = Logger.getLogger(SpotifyResource.class.getName());
-	
-	public static SpotifyResource getInstance() {
-		if (instance==null)
-			return new SpotifyResource();
-		else
-			return instance;
-	}
 	
 	public AlbumSearch getAlbums(String query) throws UnsupportedEncodingException {
 		
