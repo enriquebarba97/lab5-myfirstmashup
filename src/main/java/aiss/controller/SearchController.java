@@ -10,9 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import aiss.model.spotify.AlbumSearch;
-import aiss.model.resources.SpotifyResource;
-
+import aiss.model.omdb.MovieSearch;
+import aiss.model.resources.OMDbResource;
 
 /**
  * Servlet implementation class SearchController
@@ -38,16 +37,16 @@ public class SearchController extends HttpServlet {
 		String query = request.getParameter("searchQuery");
 		RequestDispatcher rd = null;
 		
-		// Search for albums in Spotify
-		log.log(Level.FINE, "Searching for Spotify albums of " + query);
-		SpotifyResource spotify = new SpotifyResource();
-		AlbumSearch spotifyResults = spotify.getAlbums(query);
-		
-		if (spotifyResults!=null){
+		// Search for movies in OMDb
+		log.log(Level.FINE, "Searching for OMDb movies that contain " + query);
+		OMDbResource omdb = new OMDbResource();
+		MovieSearch omdbResults = omdb.getMovies(query);
+
+		if (omdbResults!=null){
 			rd = request.getRequestDispatcher("/success.jsp");
-			request.setAttribute("albums", spotifyResults.getAlbums().getItems());
+			request.setAttribute("movies", omdbResults.getSearch());		
 		} else {
-			log.log(Level.SEVERE, "Spotify object: " + spotifyResults);
+			log.log(Level.SEVERE, "OMDb object: " + omdbResults);
 			rd = request.getRequestDispatcher("/error.jsp");
 		}
 		rd.forward(request, response);

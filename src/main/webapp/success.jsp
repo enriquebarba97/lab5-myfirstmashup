@@ -11,20 +11,17 @@
 <body>
 
 
-<fieldset id="spotify">
-<legend>Spotify search for <c:out value="${param.searchQuery}"/></legend>
-
-<c:forEach items="${requestScope.albums}" var="album">
-	<span>Album name: <c:out value="${album.name}"/></span><br/>
+<fieldset id="omdb">
+<legend>OMDb search for <c:out value="${param.searchQuery}"/></legend>
+<c:forEach items="${requestScope.movies}" var="movie">
+	<span>Movie title: <c:out value="${movie.title}"/></span><br/>
 </c:forEach>
 </fieldset>
 
-  
 <fieldset id="flickr">
 <legend>Flickr search for <c:out value="${param.searchQuery}"/></legend>
 
 </fieldset>
-
 
 </body>
 </html>
