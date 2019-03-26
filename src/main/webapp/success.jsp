@@ -20,7 +20,11 @@
 
 <fieldset id="flickr">
 <legend>Flickr search for <c:out value="${param.searchQuery}"/></legend>
-
+<c:forEach items="${requestScope.photos.photo}" var="photo">
+	<img src='http://farm<c:out value="${photo.farm}"/>.staticflickr.com/
+	<c:out value="${photo.server}"/>/<c:out value="${photo.id}"/>_
+	<c:out value="${photo.secret}"/>.jpg'/>
+</c:forEach>
 </fieldset>
 
 </body>

@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import aiss.model.flickr.PhotoSearch;
 import aiss.model.omdb.MovieSearch;
+import aiss.model.resources.FlickrResource;
 import aiss.model.resources.OMDbResource;
 
 /**
@@ -41,14 +43,21 @@ public class SearchController extends HttpServlet {
 		log.log(Level.FINE, "Searching for OMDb movies that contain " + query);
 		OMDbResource omdb = new OMDbResource();
 		MovieSearch omdbResults = omdb.getMovies(query);
+		
+		log.log(Level.FINE, "Searching for Flickr photos that contain " + query);
+		FlickrResource flickr = new FlickrResource();
+		PhotoSearch flickrResults = flickr.getFlickrPhotos(query);
 
-		if (omdbResults!=null){
+		if (omdbResults!=null && flickrResults!=null){
 			rd = request.getRequestDispatcher("/success.jsp");
-			request.setAttribute("movies", omdbResults.getSearch());		
+			request.setAttribute("movies", omdbResults.getSearch());
+			request.setAttribute("photos", flickrResults.getPhotos());
 		} else {
 			log.log(Level.SEVERE, "OMDb object: " + omdbResults);
+			log.log(Level.SEVERE, "Flickr object: " + flickrResults);
 			rd = request.getRequestDispatcher("/error.jsp");
 		}
+		
 		rd.forward(request, response);
 	}
 	
