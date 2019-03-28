@@ -12,7 +12,7 @@ import aiss.model.flickr.PhotoSearch;
 
 public class FlickrResource {
 
-	private static final String FLICKR_API_KEY = " 4ff381cffcc11efdca885627b97e4c49";		// TODO: Change this API KEY for your personal Key
+	private static final String FLICKR_API_KEY = "4ff381cffcc11efdca885627b97e4c49";		// TODO: Change this API KEY for your personal Key
 	private static final Logger log = Logger.getLogger(FlickrResource.class.getName());
 
 	
